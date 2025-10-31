@@ -1,67 +1,193 @@
-# Payload Blank Template
+# Bazaar Pro Admin Panel
 
-This template comes configured with the bare minimum to get started on anything you need.
+A sophisticated admin panel built for the **Bazaar Pro React Ecommerce Template v4.0.0** using **Next.js 13** with the App Router, **Payload CMS**, and **TypeScript**. This project demonstrates advanced content management capabilities with dynamic layouts, drag-and-drop section management, and seamless Supabase database integration.
 
-## Quick start
+## 🚀 Key Features
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+### Dynamic Content Management
+- **Drag-and-Drop Layout Builder**: Fully customizable homepage with modular blocks that can be rearranged dynamically
+- **Reusable Content Blocks**: Over 15+ pre-built blocks for banners, product carousels, category grids, and more
+- **Real-time Content Updates**: Changes reflect immediately in the frontend without redeployment
 
-## Quick Start - local setup
+### Ecommerce-Specific Collections
+- **Products**: Complete product management with pricing, images, and customer reviews
+- **Categories**: Hierarchical category system with nested subcategories and parent relationships
+- **Media Library**: Centralized media management with alt text and automatic resizing
+- **Icons**: Custom icon management for UI elements
+- **Pages**: Static page management with SEO fields
 
-To spin up this template locally, follow these steps:
+### Advanced Block System
+- **Hero Banners**: Multi-layout hero sections with customizable text lines and CTAs
+- **Product Displays**: Carousels, grids, and filtered product lists
+- **Banner Systems**: Full-width, half-width, and equal-width banner configurations
+- **Feature Sections**: Service highlights with icons and descriptions
+- **Category Integration**: Dynamic category grids with nested relationships
 
-### Clone
+### Technical Architecture
+- **Next.js 13 App Router**: Modern React framework with server components
+- **Payload CMS**: Headless CMS with rich editing capabilities
+- **Supabase Integration**: PostgreSQL database with real-time capabilities
+- **TypeScript**: Full type safety with auto-generated Payload types
+- **Lexical Editor**: Rich text editing for content blocks
+- **Sharp Image Processing**: Automatic image optimization and resizing
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+## 🛠 Tech Stack
 
-### Development
+- **Framework**: Next.js 13 (App Router)
+- **CMS**: Payload CMS v3
+- **Database**: Supabase (PostgreSQL)
+- **Language**: TypeScript
+- **Styling**: Custom SCSS with Payload admin UI
+- **Image Processing**: Sharp
+- **Rich Text**: Lexical Editor
+- **Deployment**: Docker-ready with docker-compose
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+## 📁 Project Structure
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+```
+src/
+├── collections/          # Database collections
+│   ├── Users.ts         # Authentication
+│   ├── Media.ts         # File uploads
+│   ├── Products.ts      # Ecommerce products
+│   ├── Categories.ts    # Product categories
+│   ├── Icons.ts         # UI icons
+│   └── Pages.ts         # Static pages
+├── globals/             # Global content
+│   ├── Home.ts          # Homepage layout
+│   ├── Header.ts        # Site header
+│   └── Footer.ts        # Site footer
+├── blocks/              # Reusable content blocks
+│   ├── HeroBannersLeftMain.ts
+│   ├── CategoriesGrid.ts
+│   ├── ProductListWithCatList.ts
+│   └── ... (15+ blocks)
+├── fields/              # Shared field configurations
+│   ├── fourTextLinesForBanners.ts
+│   ├── threeTextLinesForBanners.ts
+│   └── bannerGroupFields.ts
+├── app/                 # Next.js app router
+│   ├── (frontend)/      # Public pages
+│   └── (payload)/       # Admin panel
+└── payload-types.ts     # Auto-generated TypeScript types
+```
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+## 🔧 Setup & Development
 
-#### Docker (Optional)
+### Prerequisites
+- Node.js 18+
+- pnpm
+- Supabase account
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+### Local Development
 
-To do so, follow these steps:
+1. **Clone and Install**
+   ```bash
+   git clone <repository-url>
+   cd bazaar-pro-admin
+   pnpm install
+   ```
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+2. **Environment Setup**
+   ```bash
+   cp .env.example .env
+   # Add your Supabase DATABASE_URI and PAYLOAD_SECRET
+   ```
 
-## How it works
+3. **Database Migration**
+   ```bash
+   pnpm payload migrate
+   ```
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+4. **Generate Types**
+   ```bash
+   pnpm payload generate:types
+   ```
+
+5. **Start Development Server**
+   ```bash
+   pnpm dev
+   ```
+
+6. **Access Admin Panel**
+   - Open `http://localhost:3000/admin`
+   - Create your first admin user
+
+### Docker Setup (Alternative)
+
+```bash
+docker-compose up -d
+pnpm dev
+```
+
+## 🎨 Content Management Features
+
+### Homepage Builder
+- **Hero Section**: Left-main banner layout with right-side banners
+- **Content Blocks**: Add/remove/reorder sections like:
+  - Feature rectangles with icons
+  - Category grids with nested categories
+  - Product carousels with filters
+  - Brand logo bars
+  - Special offer banners
+
+### Product Management
+- Rich product data with reviews system
+- Category relationships
+- Media integration
+- SEO-friendly slugs
+
+### Category System
+- Hierarchical categories with parent-child relationships
+- Subcategory arrays
+- Image associations
+- Nested document plugin for URL generation
+
+## 🔒 Security & Performance
+
+- **Type-Safe**: Full TypeScript coverage with generated types
+- **Secure Auth**: Payload's built-in authentication
+- **Optimized Images**: Automatic resizing and WebP conversion
+- **Database Relations**: Efficient querying with Supabase
+- **SEO Ready**: Meta fields for all content types
+
+## 📊 Database Schema
 
 ### Collections
+- **Users**: Admin authentication
+- **Media**: File uploads with metadata
+- **Products**: Ecommerce products with reviews
+- **Categories**: Nested category hierarchy
+- **Icons**: UI icon management
+- **Pages**: Static content pages
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+### Globals
+- **Home**: Dynamic homepage layout
+- **Header**: Navigation and topbar
+- **Footer**: Site footer content
 
-- #### Users (Authentication)
+## 🚀 Deployment
 
-  Users are auth-enabled collections that have access to the admin panel.
+### Production Build
+```bash
+pnpm build
+pnpm start
+```
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+### Docker Deployment
+```bash
+docker build -t bazaar-admin .
+docker run -p 3000:3000 bazaar-admin
+```
 
-- #### Media
+## 🤝 Contributing
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+This admin panel is designed to be extensible. New blocks can be added in the `src/blocks/` directory and registered in the global configurations.
 
-### Docker
+## 📝 License
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+Built for Bazaar Pro React Ecommerce Template - Custom implementation showcasing modern web development practices.
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+---
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+**Showcase Skills**: Next.js 13, Payload CMS, TypeScript, Supabase, Dynamic CMS, Ecommerce Admin Systems, Content Management, API Design
